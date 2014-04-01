@@ -1,0 +1,58 @@
+.container.blue
+  .wrap_offset
+    .cart
+      %h1 Корзина
+      
+      -if @products.length != 0
+        
+        -for product in @products
+          -@products_order = ProductsOrder.where("product_id = ? AND order_id = ?", product.id, @order_id).first
+          -@count = @products_order.sum
+          -@size = @products_order.size
+      
+          .product_cart
+            
+            .product_cart-img
+              -if product.attachments.find_last
+                = image_tag product.attachments.find_last.file_url(:mini)
+              -else
+                %img{:src => '/images/nophoto_small.png'}
+              
+            .product_cart-desc
+              %h2= link_to product.title, "/shop/#{product.category.parent_path}/product/#{product.id}"
+              %h3 Описание:
+              %div= product.desc
+              
+            .product_cart-action
+              .product_cart-count
+                Количество:
+                %span.btn.btn-blue.count
+                  %span.btn-in -
+                %span.product_cart-counter=@count
+                %span.btn.btn-blue.count
+                  %span.btn-in +
+
+              .product_cart-price 
+                Стоимисть:
+                = product.price.to_i * @count
+                руб.
+              = link_to(products_order_destroy_path(@order, product), :method => :delete, :class => "btn btn-red") do
+                %span.btn-in Убрать
+        
+        .cart-price
+          Итоговая стоимисть:
+          = @price.to_i
+          руб.
+                  
+      -else
+        %h2 Ваша корзина пуста
+
+
+-if @products.length != 0
+  .container
+    .wrap_offset
+      .clearfix
+        = link_to(:back, :class => "btn btn-blue pull-left") do
+          %span.btn-in Назад к товарам
+        = link_to(order_confirm_path(@order), :class => "btn btn_green-buy pull-right") do
+          %span.btn-in Оформить заказ

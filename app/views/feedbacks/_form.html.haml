@@ -1,0 +1,33 @@
+= form_for @feedback do |f|
+  -#- if @feedback.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@feedback.errors.count, "error")} prohibited this feedback from being saved:"
+      %ul
+        - @feedback.errors.full_messages.each do |msg|
+          %li= msg
+
+  .cart-box.clearfix
+    %dl.fluid
+      %dt
+        = f.label :username, "Ваше имя"
+        %span.star *
+      %dd
+        = f.text_field :username
+        
+
+    %dl.fluid
+      %dt
+        = f.label :email, "E-mail"
+        %span.star *
+      %dd
+        = f.text_field :email
+
+    %dl.fluid
+      %dt
+        = f.label :text, "Ваш отзыв"
+        %span.star *
+      %dd.text_area
+        = f.text_area :text
+      
+  .cart-order-confirm
+    %input.cart-confirm{:type=>"submit", :value=>"Отправить сообщение"}

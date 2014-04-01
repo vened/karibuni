@@ -1,0 +1,28 @@
+%table#index_table_orders.index_table.index{:cellspacing => "0", :cellpadding => "0", :border => "0",  :paginator => "true"}
+  %thead
+    %tr
+      %th №
+      %th Клиент
+      %th Телефон
+      %th Email
+      %th Стоимость(руб.)
+      %th Дата
+      %th Статус заказа
+      %th
+
+  %tbody
+    -@orders.each do |item|
+      %tr{:class => "#{'new' if item.confirm == 'Новый' } #{'process' if item.confirm == 'В обработке' } #{'done' if item.confirm == 'Готово' } #{'fail' if item.confirm == 'Отказ' }"}
+        %td=link_to item.id, admin_order_path(item)
+        %td
+          = item.username
+          = item.surname
+        %td= item.phone
+        %td= item.email
+        %td= item.price.to_i
+        %td= raw I18n.l item.created_at, :format => :day
+        %td= item.confirm
+        %td
+          =link_to "Редактировать", edit_admin_order_path(item)
+          &nbsp;
+          =link_to "Удалить", admin_order_path(item), :confirm => 'Точно удалить?', :method => :delete

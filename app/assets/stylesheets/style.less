@@ -1,0 +1,124 @@
+body{
+	.base_font_size;
+	color: #000;
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 300;
+}
+
+p{
+	margin: 22px 0;
+}
+
+a{
+	color: #126acd;
+	text-decoration: none;
+
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+hr{
+	height: 1px;
+	margin: 20px 0;
+	background: transparent;
+	border-bottom: dotted #07a2e4;
+	border-width: 0 0 1px 0;
+}
+
+h1{
+	margin: 0 0 55px 0;
+	line-height: 42px;
+	font-size: 36px;
+	color: #353549;
+	font-weight: 500;
+}
+
+h2{
+	margin: 0 0 35px 0;
+	line-height: 30px;
+	font-size: 22px;
+	color: #353549;
+	font-weight: 500;
+}
+
+h3{
+	margin: 10px 0;
+	line-height: 27px;
+	font-size: 19px;
+	color: #353549;
+	font-weight: 500;
+}
+
+.menu{
+	position: relative;
+	display: block;
+	margin-left: -8px;
+	font-size: 0;
+	font-weight: 400;
+
+	.menu-item{
+		position: relative;
+		display: inline-block;
+		margin-right: 17px;
+		padding: 1px 8px 3px;
+		vertical-align: top;
+		border-radius: 4px;
+		.base_font_size;
+
+		&:last-child{
+			margin-right: 0;
+		}
+
+		&:hover,
+		&.selected{
+			background: #e5efef;
+
+			.menu-sub{
+				display: block;
+			}
+		}
+
+		a{
+			text-decoration: none;
+		}
+	}
+
+	&.main-menu{
+		margin-top: 12px;
+	}
+
+	&.shop-menu{
+		font-weight: 500;
+	}
+}
+
+.menu-sub{
+	display: none;
+	position: absolute;
+	top: -1px;
+	left: -7px;
+	z-index: 10;
+	background: transparent;
+	border: 1px dotted #126acd;
+	border-radius: 4px;
+
+	.menu{
+		background: #fff;
+		padding: 0 14px 5px;
+		margin: 0;
+
+		.root{
+			margin-left: -8px;
+			font-weight: 500;
+			background: #fff;
+		}
+	}
+
+	.menu-item{
+		display: block;
+		margin: 0;
+		white-space: nowrap;
+		font-weight: 300;
+	}
+}

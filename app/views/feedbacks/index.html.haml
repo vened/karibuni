@@ -1,0 +1,15 @@
+.box-container
+  .breadcrumbs
+    = link_to 'Главная', '/'
+    &nbsp;|&nbsp;
+    -#= link_to 'Портфолио', albums_path
+    %span Обратная связь
+
+
+.box-container.box-main-container.page-cart
+  .box-main
+    %h1 Обратная связь
+    = render 'form'
+
+  .box-right
+    .mini_cart= render_cell :cart, :mini_cart

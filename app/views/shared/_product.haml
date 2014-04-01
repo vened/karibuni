@@ -1,0 +1,23 @@
+.product_cart
+  = form_tag(:controller => "order", :action => "order_add_product", :id => product.id) do
+
+    .product_cart-img
+      -if product.attachments.find_last
+        = link_to("/shop/#{product.category.parent_path}/product/#{product.id}") do
+          = image_tag product.attachments.find_last.file_url(:thumb)
+      -else
+        = link_to("/shop/#{product.category.parent_path}/product/#{product.id}") do
+          %img{:src => '/images/nophoto_small.png'}
+  
+    .clearfix
+      .pull-left
+        %h3.product_cart-title
+          = link_to "/shop/#{product.category.parent_path}/product/#{product.id}", :class => 'title'  do
+            =product.title
+        .product_cart-price
+          Цена: 
+          = product.price.to_i 
+          руб.
+      %button.btn.btn_green-add
+        %span.btn-in
+          %i.icons.icons_cart-white

@@ -1,0 +1,7 @@
+-for page in @pages
+  -if params[:controller] == 'pages' && params[:id] == page.path
+    %li.menu-item.selected 
+      =link_to page.title, "/#{page.path}"
+  -else
+    %li.menu-item 
+      =link_to page.title, "/#{page.path}" 

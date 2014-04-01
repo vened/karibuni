@@ -1,0 +1,12 @@
+%ul.menu.shop-menu
+  -@categories.each do |category|
+    %li.menu-item
+      =link_to category.title, "/shop/#{category.parent_path}/product/"
+      -if category.children.length != 0
+        .menu-sub
+          %ul.menu
+            %li.menu-item.root
+              =link_to category.title, "/shop/#{category.parent_path}/product/"
+            -category.children.each do |cat|
+              %li.menu-item
+                =link_to cat.title, "/shop/#{cat.parent_path}/product/"

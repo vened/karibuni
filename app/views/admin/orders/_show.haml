@@ -1,0 +1,66 @@
+.panel
+  %h3
+    Заказ №
+    = @order.id
+    %b{:style=>"color:green"} (#{@order.confirm})
+
+  .panel_contents
+    .attributes_table
+      %table
+        %tr.row
+          %th ФИО
+          %td
+            = @order.username
+            = @order.surname
+        %tr.row
+          %th Контактный телефон
+          %td= @order.phone
+        %tr.row
+          %th Email
+          %td= @order.email
+        %tr.row
+          %th Адрес для доставки
+          %td= @order.address
+
+        %tr.row
+          %th Комментарий к заказу
+          %td= @order.comment
+        %tr.row
+          %th Стоимость (руб.)
+          %td= @order.price.to_i
+
+.panel{:style => "margin-top:30px"}
+  %h3 Содержимое заказа
+  .panel_contents
+    .attributes_table
+      -if @order.products.length != 0
+        %table{:style=>"width:auto"}
+          %tr
+            %th Изображение
+            %th Название
+            %th Описание
+            %th кол-во
+            %th Цена
+          -for item in @order.products
+            -@products_order = ProductsOrder.where("product_id = ? AND order_id = ?", item.id, @order.id).first
+            -@count = @products_order.sum
+            -@size = @products_order.size
+
+            %tr
+              %td
+                -if item.attachments.find_last
+                  = image_tag item.attachments.find_last.file_url(:mini)
+                -else
+                  %img{:src => '/images/nophoto_small.png'}
+              %td
+                %div= link_to item.title, [item.category, item]
+                .size
+                  Размер:
+                  %b=@size
+
+              %td= item.desc
+              %td=@count
+              %td
+                = item.price.to_i * @count
+                руб.
+

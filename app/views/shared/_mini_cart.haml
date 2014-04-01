@@ -1,0 +1,22 @@
+-if @products.length > 0
+  %dl.mini_cart
+    %dt КОРЗИНА
+    -@products.each do |product|
+      %dd
+        %div=link_to product.title, [product.category, product]
+        %div
+          Кол-во:
+          -@products_order = ProductsOrder.where("product_id = ? AND order_id = ?", product.id, @order_id).first
+          -@count = @products_order.sum
+          =@count
+        %div
+          Цена:
+          =product.price.to_i * @count
+          руб
+    %dd.sum
+      Сумма:
+      =@price
+      руб
+
+    %dd{:style=> "padding:10px 0 0 0"}
+      %a{:class=> "button cart-order", :href=> "/cart"} Оформить заказ

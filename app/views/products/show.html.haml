@@ -1,0 +1,38 @@
+.container.blue
+  .wrap_offset
+    .product-offset.b-product.clearfix{:itemscope=>"", :itemtype=>"http://schema.org/Product"}
+      = form_tag(:controller => "order", :action => "order_add_product", :id => @product.id) do
+      
+        .b-product-info{:itemprop=>"offers", :itemscope=>"", :itemtype=>"http://schema.org/Offer"}
+          
+          %h1{:itemprop => "name"}= @product.title        
+          
+          %h3 Описание:
+          .b-product_desc{:itemprop => "description"}= @product.desc
+          
+          %h3 Стоимисть:
+          .b-product_price{:itemprop => "price"}
+            = @product.price.to_i 
+            руб.
+          %meta{:itemprop=>"priceCurrency", :content=>"RUB"}
+
+          .b-product_buy
+            %button.btn.btn_green-buy
+              %span.btn-in Купить
+
+          = render :partial => 'shared/share'
+
+
+        .b-product_images
+          
+          .b-product_image.js-image
+            -if @images.find_last
+              %meta{:itemprop=>"image", :content => "http://#{request.host}/#{@images.find_last.file_url(:large)}"}
+              =image_tag @images.find_last.file_url(:large)
+            -else
+              %img{:src => '/images/nophoto_big.png'}
+              
+          .b-product_images-list.js-images
+            -for image in @images
+              %span.b-product_images-list-img
+                =image_tag image.file_url(:mini), :data => {:img => image.file_url(:large)}

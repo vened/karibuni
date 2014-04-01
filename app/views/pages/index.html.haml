@@ -1,0 +1,8 @@
+= render 'shared/promo'
+
+
+.container.blue.root-page
+  .wrap_offset
+    %h2 Новинки магазина
+    .products
+      = render :partial => 'shared/products', :object => @products

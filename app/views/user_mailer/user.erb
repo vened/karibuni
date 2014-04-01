@@ -1,0 +1,123 @@
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+</head>
+<body style="margin: 0; padding: 0;" bgcolor="#ffffff" text="#444444" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" link="#5A2A00" alink="#5A2A00" vlink="#5A2A00" style="font: normal 13px Arial;">
+<div style="font: normal 13px Arial;">
+
+  <table style="width: 100%">
+    <tr>
+      <td style="padding: 0 40px 0 0">
+        <h1>Здравствуйте <%= @user.name %>!</h1>
+
+        <p>У нас новогодняя распродажа</p>
+
+      </td>
+      <td>
+        <p><a href="http://volare.su/shop/"><%= image_tag attachments['logo.png'].url %></a></p>
+
+        <p>Дизайнерская обувь из Италии по низким ценам!</p>
+      </td>
+    </tr>
+  </table>
+
+  <div style="border-bottom: 1px solid #ccc"></div>
+
+  <p>
+    <a href="http://volare.su/user_unsubscribe/<%= @user.id %>">Отписаться от рассылки</a>
+  </p>
+
+  <h2>Наши сапожки:</h2>
+
+  <p>
+  <table style="width: 100%">
+    <tr>
+      <td style="padding: 0 35px 0 0;vertical-align: top">
+        <a href="http://volare.su/shop/sapogy/2">
+          <h2><%= @product_1.title %></h2>
+        </a>
+
+        <p>
+          <a href="http://volare.su/shop/sapogy/2">
+            <%= image_tag attachments['product_1.png'].url %>
+          </a>
+        </p>
+
+        <h3><b><%= @product_1.price %> руб.</b></h3>
+      </td>
+      <td style="padding: 0 35px 0 0;vertical-align: top">
+        <a href="http://volare.su/shop/sapogy/1">
+          <h2><%= @product_2.title %></h2>
+        </a>
+
+        <p>
+          <a href="http://volare.su/shop/sapogy/1">
+            <%= image_tag attachments['product_2.png'].url %>
+          </a>
+        </p>
+
+        <h3><b><%= @product_2.price %> руб.</b></h3>
+      </td>
+      <td style="padding: 0 35px 0 0;vertical-align: top">
+        <a href="http://volare.su/shop/sapogy/21">
+          <h2><%= @product_3.title %></h2>
+        </a>
+
+        <p>
+          <a href="http://volare.su/shop/sapogy/21">
+            <%= image_tag attachments['product_3.png'].url %>
+          </a>
+        </p>
+
+        <h3><b><%= @product_3.price %> руб.</b></h3>
+      </td>
+      <td style="padding: 0 35px 0 0;vertical-align: top">
+        <a href="http://volare.su/shop/sapogy/14">
+          <h2><%= @product_4.title %></h2>
+        </a>
+
+        <p>
+          <a href="http://volare.su/shop/sapogy/14">
+            <%= image_tag attachments['product_4.png'].url %>
+          </a>
+        </p>
+
+        <h3><b><%= @product_4.price %> руб.</b></h3>
+      </td>
+    </tr>
+  </table>
+  </p>
+
+  <p>
+    <b>VOLARE</b> – это ультрамодная, авторская коллекция обуви, сумок и аксессуаров, созданная итальянскими
+    дизайнерами
+    с учетом всех возможных пожеланий даже самых прихотливых модниц. Невероятное удобство, оригинальность
+    исполнения каждой модели, модный дизайн делает эту обувь не просто частью вашей одежды, они задают
+    неповторимый стиль и образ жизни, подчеркивая вашу непринужденность и простоту.
+  </p>
+
+  <p>
+    Сапоги разнообразных цветов, выполненные из натуральной кожи, замши и экзотической кожи питона и крокодила, с
+    оригинальными украшениями в виде аппликаций, заклепок, декоративного шнура, ремешков и страз подойдут к одежде
+    в стиле casual или к образу в этническом стиле.
+  </p>
+
+
+  <div style="border-bottom: 1px solid #ccc"></div>
+
+  <p>
+    <a href="http://volare.su/user_unsubscribe/<%= @user.id %>">Отписаться от рассылки</a>
+  </p>
+
+  <div style="border-bottom: 1px solid #ccc"></div>
+  <p>Телефон для связи: <b>+7 (909) 959-31-06</b></p>
+
+  <p>Email: <a href="mailto:info@volare.su">info@volare.su</a></p>
+
+  <div style="border-bottom: 1px solid #ccc"></div>
+  <p>© <a href="http://volare.su/shop/">Volare</a>. Все права защищены.</p>
+
+</div>
+</body>
+</html>

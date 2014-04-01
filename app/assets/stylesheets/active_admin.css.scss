@@ -1,0 +1,61 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   body.active_admin {
+//      .status_tag { background: #6090DB; }
+//   }
+//
+// Notice that Active Admin CSS rules are nested within a
+// 'body.active_admin' selector to prevent conflicts with
+// other pages in the app. It is best to wrap your changes in a 
+// namespace so they are properly recognized. You have options
+// if you e.g. want different styles for different namespaces:
+//
+// .active_admin       applies to any Active Admin namespace
+// .admin_namespace    applies to the admin namespace (eg: /admin)
+// .other_namespace    applies to a custom namespace named other (eg: /other)
+@import "sortable_tree";
+@import "nested_options";
+
+.nested_set{
+  margin-left: 20px !important ;
+}
+
+body.active_admin table.index_table td{
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+  font-size: 13px;
+}
+
+body.active_admin .table_tools {
+  display: block;
+  height: auto;
+  margin-bottom: 16px;
+  width: 100%;
+}
+body.active_admin #active_admin_content {
+  margin: 0;
+  padding: 0 30px;
+}
+body.active_admin #active_admin_content #sidebar {
+ margin-top: 25px;
+}
+
+.index_table tr.new td{background: #D9EDF7;}
+.index_table tr.process td{background: #FCF8E3;}
+.index_table tr.done td{background: #DFF0D8;}
+.index_table tr.fail td{background: #F2DEDE;}
+

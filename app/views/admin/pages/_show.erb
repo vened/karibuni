@@ -1,0 +1,32 @@
+<div class="panel">
+  <h3><%= @page.title %></h3>
+
+  <div class="panel_contents">
+    <div class="attributes_table">
+      <table>
+        <tr class="row">
+          <th>Текс</th>
+          <td><%= raw @page.text %></td>
+        </tr>
+        <tr class="row">
+          <th>URL страницы</th>
+          <td>
+            <a href="/<%= @page.parent_path %>"><%= @page.parent_path %></a>
+          </td>
+        </tr>
+        <tr class="row">
+          <th>SEO, Title</th>
+          <td><%= @page.meta_title %></td>
+        </tr>
+        <tr class="row">
+          <th>SEO, ключевые слова</th>
+          <td><%= @page.meta_key %></td>
+        </tr>
+        <tr class="row">
+          <th>SEO, краткое описание</th>
+          <td><%= @page.meta_desc %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

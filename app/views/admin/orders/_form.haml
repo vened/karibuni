@@ -1,0 +1,48 @@
+= semantic_form_for [:admin, @order] do |f|
+  = f.inputs "Новая страница" do
+    = f.input :username, :label => "Имя"
+    = f.input :surname, :label => "Фамилия"
+    = f.input :phone, :label => "Контактный телефон"
+    = f.input :email, :label => "Email"
+    = f.input :address, :label => "Адрес для доставки"
+    = f.input :date, :label => "Желаемая дата доставки"
+    = f.input :first_time, :label => "Желаемое время доставки с"
+    = f.input :last_time, :label => "до"
+    = f.input :price, :label => "Стоимость (руб.)"
+    = f.input :payment, :label => "Форма оплаты", :as => :select, :collection => [['Наличными курьеру', 'Наличными курьеру'], ['Пластиковой картой', 'Пластиковой картой'], ['Безналичный расчёт', 'Безналичный расчёт']]
+    = f.input :confirm, :label => "Стастус зака", :as => :select, :collection => [['В обработке','В обработке'], ['Готово','Готово'], ['Отказ','Отказ'], ['Новый','Новый']]
+
+  .panel{:style => "margin-top:30px"}
+    %h3 Содержимое заказа
+    .panel_contents
+
+      .attributes_table
+        %table
+          %tr.row
+            %th Комментарий к заказу
+            %td= @order.comment
+      .attributes_table
+        %table{:style=>"width:auto"}
+          %tr
+            %td Наименование
+            %td Изображение
+            %td Порция
+            %td Количество
+            %td Цена
+            %td Итого
+          -for cart_item in JSON.parse(@order.data)
+            %tr
+              -if cart_item
+                -product = Product.find(cart_item[0])
+                %td= link_to product.title, [product.category, product], :target => '_blank'
+                -if product.attachments.find_last
+                  %td= image_tag product.attachments.find_last.file_url(:mini)
+                %td
+                  = product.weight.to_i
+                  гр.
+                %td= cart_item[1]
+                %td= product.price.to_i
+                %td= product.price.to_i * cart_item[1]
+
+  = f.actions do
+    = f.action :submit

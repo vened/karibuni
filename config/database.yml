@@ -1,0 +1,38 @@
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+#development:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: volare_dev
+#  pool: 5
+#  username: volare
+#  password: qwerty
+#  host: localhost
+#  socket: /var/run/mysqld/mysqld.sock
+#
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: volare_dev
+#  pool: 5
+#  username: volare
+#  password: qwerty
+#  host: localhost
+#  socket: /var/run/mysqld/mysqld.sock
+#
+#test:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: volare_dev
+#  pool: 5
+#  username: volare
+#  password: qwerty
+#  host: localhost
+#  socket: /var/run/mysqld/mysqld.sock

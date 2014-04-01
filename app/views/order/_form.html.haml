@@ -1,0 +1,42 @@
+= form_for @order, :url => { :action => :create } do |f|
+
+  .order-form
+
+    %input{:type=>"hidden", :name=>"order[confirm]", :value=> 'Новый'}
+
+    .field
+      = f.label :username, "Ваше имя:", :class => "label"
+      = f.text_field :username
+      - if @order.errors.any?
+        .error= @order.errors.messages[:username].join
+      
+    .field
+      = f.label :email, "Ваш e-mail:", :class => "label"
+      = f.text_field :email
+      - if @order.errors.any?
+        .error= @order.errors.messages[:email].join
+      
+    .field
+      = f.label :address, "Ваш адрес:", :class => "label"
+      = f.text_field :address
+      - if @order.errors.any?
+        .error= @order.errors.messages[:address].join
+      
+    .field
+      = f.label :surname, "Ваша фамилия:", :class => "label"
+      = f.text_field :surname
+      - if @order.errors.any?
+        .error= @order.errors.messages[:surname].join
+      
+    .field
+      = f.label :phone, "Ваш телефон:", :class => "label"
+      = f.text_field :phone
+      - if @order.errors.any?
+        .error= @order.errors.messages[:phone].join
+      
+      
+  .clearfix
+    = link_to(cart_path, :class => "btn btn-blue pull-right") do
+      %span.btn-in Назад в корзину
+    %button.btn.btn_green-buy.pull-left
+      %span.btn-in Оформить

@@ -1,0 +1,21 @@
+.clearfix
+  .product-images
+    .product-images-large
+      = image_tag @product.attachments.find_last.file_url(:large)
+    %ul.product-images-thumb
+      -for image in @product.attachments
+        %li= image_tag image.file_url(:mini)
+  .product-text
+    %h2= @product.title
+    %hr
+    .price
+      Цена:
+      = @product.price
+    %hr
+      .weight
+        Размеры:
+        = @product.weight
+    %hr
+      .cart-add Купить
+    %hr
+      .description= @product.desc

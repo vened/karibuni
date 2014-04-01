@@ -1,0 +1,9 @@
+.container.blue
+  .wrap_offset
+    %h1 
+      Заказ №
+      = @order.id
+      успешно оформлен
+      
+    = link_to(shop_path, :class => "btn btn-blue") do
+      %span.btn-in Вернуться в магазин
