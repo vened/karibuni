@@ -1,9 +1,14 @@
 .cart.pull-right
-  =link_to(cart_path, :class => 'cart-icon') do
-    %i.icons.icons_cart-blue
-  %span.cart-t
-    В корзине:
-    =link_to "#{@quantity} шт.", cart_path
   -if @quantity != 0
+    =link_to(cart_path, :class => 'cart-icon') do
+      %i.icons.icons_cart-blue
+    %span.cart-t
+      В корзине:
+      =link_to "#{@quantity} шт.", cart_path
     =link_to(cart_path, :class => 'btn btn_green') do
       %span.btn-in Оформить заказ
+  -else
+    %span.cart-icon
+      %i.icons.icons_cart-blue
+    %span.cart-t
+      В корзине: 0 шт.
