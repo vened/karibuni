@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'sqlite3'
-#gem 'mysql2'
+#gem 'sqlite3'
+gem 'mysql2'
 gem 'haml-rails'
 gem 'activeadmin'
 gem 'cells'
