@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Shikocc::Application.load_tasks
+Karibuni::Application.load_tasks

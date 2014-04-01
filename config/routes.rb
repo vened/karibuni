@@ -1,4 +1,4 @@
-Shikocc::Application.routes.draw do
+Karibuni::Application.routes.draw do
 
   root :to => 'pages#index'
 
