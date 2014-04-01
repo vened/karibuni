@@ -1,6 +1,6 @@
-deploy_to  = "/home/max/www/volare.su"
+deploy_to  = "/home/max/www/dev.gymh.ru"
 rails_root = "#{deploy_to}"
-pid_file   = "#{deploy_to}/tmp/unicorn.pid"
+pid_file   = "#{deploy_to}/tmp/pids/unicorn.pid"
 socket_file= "#{deploy_to}/tmp/unicorn.sock"
 log_file   = "#{rails_root}/log/unicorn.log"
 err_log    = "#{rails_root}/log/unicorn_error.log"
