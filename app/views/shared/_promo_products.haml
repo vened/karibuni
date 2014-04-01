@@ -10,7 +10,7 @@
             .product_cart-img
               -if product.attachments.find_last
                 = link_to("/shop/#{product.category.parent_path}/product/#{product.id}") do
-                  = image_tag product.attachments.find_last.file_url(:thumb)
+                  = image_tag product.attachments.find_last.file_url(:promo)
               -else
                 = link_to("/shop/#{product.category.parent_path}/product/#{product.id}") do
                   %img{:src => '/images/nophoto_small.png'}

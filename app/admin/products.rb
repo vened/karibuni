@@ -19,9 +19,9 @@ ActiveAdmin.register Product do
     column "Категория", :category, :sortable => :weight
 
     column "Новинка", :new
-    column "Главная", :home_show
-    column "Скидка", :sale
-    column "Цена со скидкой", :price_sale
+    #column "Главная", :home_show
+    #column "Скидка", :sale
+    #column "Цена со скидкой", :price_sale
 
     actions :defaults => true
   end
@@ -34,9 +34,9 @@ ActiveAdmin.register Product do
       f.input :weight, :label => "Размеры"
 
       f.input :new, :label => "Новинка"
-      f.input :home_show, :label => "Показывать на главной"
-      f.input :sale, :label => "Скидка"
-      f.input :price_sale, :label => "Цена со скидкой"
+      #f.input :home_show, :label => "Показывать на главной"
+      #f.input :sale, :label => "Скидка"
+      #f.input :price_sale, :label => "Цена со скидкой"
 
 
       f.input :metakey, :label => "Metakey"
@@ -57,9 +57,9 @@ ActiveAdmin.register Product do
         row("Цена") { product.price }
         row("Размеры") { product.weight }
         row("Новинка") { product.new }
-        row("Показывать на главной") { product.home_show }
-        row("Скидка") { product.sale }
-        row("Цена со скидкой") { product.price_sale }
+        #row("Показывать на главной") { product.home_show }
+        #row("Скидка") { product.sale }
+        #row("Цена со скидкой") { product.price_sale }
 
         row("metakey") { product.metakey }
         row("Metadesc") { product.metadesc }

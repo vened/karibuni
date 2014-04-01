@@ -14,7 +14,7 @@
             
             .product_cart-img
               -if product.attachments.find_last
-                = image_tag product.attachments.find_last.file_url(:mini)
+                = image_tag product.attachments.find_last.file_url(:thumb)
               -else
                 %img{:src => '/images/nophoto_small.png'}
               
