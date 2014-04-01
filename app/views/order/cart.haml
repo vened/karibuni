@@ -26,10 +26,10 @@
             .product_cart-action
               .product_cart-count
                 Количество:
-                %span.btn.btn-blue.count
-                  %span.btn-in -
+                -#%span.btn.btn-blue.count.js-count-do{:data => {:product => product.id}}
+                -#  %span.btn-in -
                 %span.product_cart-counter=@count
-                %span.btn.btn-blue.count
+                -#%span.btn.btn-blue.count.js-count-up{:data => {:product => product.id}}
                   %span.btn-in +
 
               .product_cart-price 

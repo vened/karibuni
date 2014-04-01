@@ -47,6 +47,11 @@ class OrderController < ApplicationController
     end
 
   end
+  
+  
+  def order_product_count
+    
+  end
 
 
   def products_order_destroy

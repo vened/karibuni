@@ -41,6 +41,15 @@ $(document).ready(function () {
 
     AddProductToCart();
 
+	
+	function CounterProductCart(){
+		var up = $(".js-count-up"),
+			down = $(".js-count-do");
+		
+	}
+	
+	
+	
     function ProductImageView() {
         var image = $(".js-image img");
         var images = $(".js-images img");
