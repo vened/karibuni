@@ -18,6 +18,10 @@ class OrderController < ApplicationController
 
     #общая стоимость заказа
     @product = Product.find(params[:id])
+    
+    #обновим счётчик для данного продукта
+    @product.update_attribute(:hit, @product.hit + 1) 
+    
     @order.update_attribute(:price, @order.price.to_i + @product.price.to_i)
     @order.update_attribute(:confirm, "В процессе")
 

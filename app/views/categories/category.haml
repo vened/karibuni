@@ -8,6 +8,7 @@
         -@products.each do |product|
           = render :partial => 'shared/product', :object => product
           
+          
         -@category.children.each do |cat|
           -cat.products.each do |product|
             = render :partial => 'shared/product', :object => product

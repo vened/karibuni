@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :desc, :metadesc, :metakey, :price, :title, :weight, :attachments_attributes,
-                  :category_id, :home_show, :new, :sale, :price_sale
+                  :category_id, :home_show, :new, :sale, :price_sale, :hit
 
 
   has_many :attachments, :dependent => :destroy

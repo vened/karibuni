@@ -147,8 +147,9 @@ ActiveRecord::Schema.define(:version => 20140317181334) do
     t.boolean  "new"
     t.decimal  "sale"
     t.decimal  "price_sale"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "hit",         :default => 1
   end
 
   create_table "products_orders", :force => true do |t|

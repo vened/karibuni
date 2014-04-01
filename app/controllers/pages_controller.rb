@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def index
     #@products = Product.where("home_show = 0").order("updated_at DESC")
     @products = Product.first(4)
+    @products_hit = Product.order('hit DESC').first(3)
   end
 
   def show
