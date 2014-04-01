@@ -41,7 +41,9 @@ ActiveAdmin.register Product do
 
       f.input :metakey, :label => "Metakey"
       f.input :metadesc, :label => "Metadesc"
-      f.input :category, :label => "Категория"
+      
+      f.input :category, :as => :select, :label => "Категория", :collection => nested_set_options(Category, @category) { |i| "#{'-' * i.level} #{i.title}" }
+      
       f.has_many :attachments, :through => Product do |s|
         s.input :file, :as => :file, :label => "Фото", :hint => s.object.file.nil? ? s.template.content_tag(:span, "Нет фото") : s.template.image_tag(s.object.file_url(:thumb))
         s.input :_destroy, :as => :boolean, :label => "Удалить"
