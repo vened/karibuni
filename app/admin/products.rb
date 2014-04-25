@@ -19,7 +19,7 @@ ActiveAdmin.register Product do
     column "Категория", :category, :sortable => :weight
 
     column "Новинка", :new
-    #column "Главная", :home_show
+    column "Hit", :hit
     #column "Скидка", :sale
     #column "Цена со скидкой", :price_sale
 
@@ -31,9 +31,9 @@ ActiveAdmin.register Product do
       f.input :title, :label => "Название"
       f.input :desc, :label => "Описание"
       f.input :price, :label => "Цена"
-      f.input :weight, :label => "Размеры"
-
+      # f.input :weight, :label => "Размеры"
       f.input :new, :label => "Новинка"
+      f.input :hit, :label => "Hit"
       #f.input :home_show, :label => "Показывать на главной"
       #f.input :sale, :label => "Скидка"
       #f.input :price_sale, :label => "Цена со скидкой"
