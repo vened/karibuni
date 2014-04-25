@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140317181334) do
+ActiveRecord::Schema.define(:version => 20130606182379) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -81,19 +81,6 @@ ActiveRecord::Schema.define(:version => 20140317181334) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "news", :force => true do |t|
-    t.string   "title"
-    t.text     "desc"
-    t.string   "meta_key"
-    t.string   "meta_desc"
-    t.string   "path"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "news", ["path"], :name => "index_news_on_path"
-  add_index "news", ["title"], :name => "index_news_on_title"
-
   create_table "orders", :force => true do |t|
     t.string   "username"
     t.string   "surname"
@@ -104,11 +91,11 @@ ActiveRecord::Schema.define(:version => 20140317181334) do
     t.string   "payment"
     t.text     "comment"
     t.text     "data"
-    t.decimal  "price"
+    t.decimal  "price",          :precision => 10, :scale => 0
     t.boolean  "order_confirm"
     t.boolean  "payment_method"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "pages", :force => true do |t|
@@ -140,16 +127,16 @@ ActiveRecord::Schema.define(:version => 20140317181334) do
     t.text     "desc"
     t.string   "metakey"
     t.string   "metadesc"
-    t.decimal  "price"
-    t.decimal  "weight"
+    t.decimal  "price",       :precision => 10, :scale => 0
+    t.decimal  "weight",      :precision => 10, :scale => 0
     t.integer  "category_id"
     t.boolean  "home_show"
     t.boolean  "new"
-    t.decimal  "sale"
-    t.decimal  "price_sale"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "hit",         :default => 1
+    t.decimal  "sale",        :precision => 10, :scale => 0
+    t.decimal  "price_sale",  :precision => 10, :scale => 0
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.integer  "hit",                                        :default => 1
   end
 
   create_table "products_orders", :force => true do |t|

@@ -15,7 +15,7 @@ ActiveAdmin.register Product do
       render :partial => "index_photo", :object => product
     end
     column "Цена", :price, :sortable => :price
-    column "Размеры", :weight, :sortable => :weight
+    #column "Размеры", :weight, :sortable => :weight
     column "Категория", :category, :sortable => :weight
 
     column "Новинка", :new
@@ -39,8 +39,8 @@ ActiveAdmin.register Product do
       #f.input :price_sale, :label => "Цена со скидкой"
 
 
-      f.input :metakey, :label => "Metakey"
-      f.input :metadesc, :label => "Metadesc"
+      #f.input :metakey, :label => "Metakey"
+      #f.input :metadesc, :label => "Metadesc"
       
       f.input :category, :as => :select, :label => "Категория", :collection => nested_set_options(Category, @category) { |i| "#{'-' * i.level} #{i.title}" }
       
@@ -63,8 +63,8 @@ ActiveAdmin.register Product do
         #row("Скидка") { product.sale }
         #row("Цена со скидкой") { product.price_sale }
 
-        row("metakey") { product.metakey }
-        row("Metadesc") { product.metadesc }
+        #row("metakey") { product.metakey }
+        #row("Metadesc") { product.metadesc }
         row("Категория") { product.category }
         product.attachments.each do |at|
           row ("Photo") { image_tag(at.file_url(:thumb)) }
