@@ -7,7 +7,7 @@ class OrderMailer < ActionMailer::Base
 
   def order_cofirm(order)
     @order = order
-    mail(:to => "maxstbn@yandex.ru", :subject => "Поступил новый заказ на сайте karibuni.ru")
+    mail(:to => "levunova@mail.ru", :subject => "Поступил новый заказ на сайте karibuni.ru")
   end
 
   def order_cofirm_user(order)

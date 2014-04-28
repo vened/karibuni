@@ -16,11 +16,11 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fill => [203, 298]
+    process :resize_to_fill => [214, 170]
   end
 
   version :promo do
-    process :resize_to_fill => [170, 214]
+    process :resize_to_fill => [298, 203]
   end
 
   version :large do
