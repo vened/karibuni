@@ -20,7 +20,7 @@ ActiveAdmin.register Product do
 
     column "Новинка", :new
     column "Hit", :hit
-    #column "Скидка", :sale
+    column "Скидка", :sale
     #column "Цена со скидкой", :price_sale
 
     actions :defaults => true
@@ -35,7 +35,7 @@ ActiveAdmin.register Product do
       f.input :new, :label => "Новинка"
       f.input :hit, :label => "Hit"
       #f.input :home_show, :label => "Показывать на главной"
-      #f.input :sale, :label => "Скидка"
+      f.input :sale, :label => "Скидка %"
       #f.input :price_sale, :label => "Цена со скидкой"
 
 
