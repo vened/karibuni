@@ -22,6 +22,12 @@
 	font-size: 36px;
 	color: #353549;
 	font-weight: 500;
+	
+	&.old{
+		margin: 0 0 10px;
+		text-decoration: line-through;
+		opacity: .5;
+	}
 }
 
 .b-product_buy{
@@ -126,6 +132,13 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+	
+	.product_cart-price{
+		&.old{
+			text-decoration: line-through;
+			opacity: .5;
+		}
+	}
 
 	h3.product_cart-title{
 		margin: 0;
@@ -175,4 +188,8 @@
 		font-size: 20px;
 		line-height: 45px;
 	}
+}
+
+.sale-title{
+	color: #EF0909;
 }

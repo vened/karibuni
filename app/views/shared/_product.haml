@@ -22,10 +22,20 @@
         %h3.product_cart-title
           = link_to "/shop/#{product.category.parent_path}/product/#{product.id}", :class => 'title'  do
             =product.title
-        .product_cart-price
-          Цена: 
-          = product.price.to_i 
-          руб.
+        -unless product.sale
+          .product_cart-price
+            Цена: 
+            = product.price.to_i 
+            руб.
+        -if product.sale 
+          .product_cart-price.old
+            Цена: 
+            = product.price.to_i 
+            руб.
+          .product_cart-price
+            Цена: 
+            = product.price_sale.to_i 
+            руб.
       %button.btn.btn_green-add
         %span.btn-in
           %i.icons.icons_cart-white

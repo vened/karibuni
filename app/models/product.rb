@@ -20,4 +20,15 @@ class Product < ActiveRecord::Base
 
 
   accepts_nested_attributes_for :attachments, :allow_destroy => true
+
+
+  before_update :product_sale
+
+  def product_sale
+    if self.sale > 0
+      self.price_sale = self.price/100 * (100 - self.sale)
+    end
+  end
+
+
 end

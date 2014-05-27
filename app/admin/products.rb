@@ -60,8 +60,8 @@ ActiveAdmin.register Product do
         row("Размеры") { product.weight }
         row("Новинка") { product.new }
         #row("Показывать на главной") { product.home_show }
-        #row("Скидка") { product.sale }
-        #row("Цена со скидкой") { product.price_sale }
+        row("Скидка") { "#{product.sale.to_i}%" }
+        row("Цена со скидкой") { product.price_sale }
 
         #row("metakey") { product.metakey }
         #row("Metadesc") { product.metadesc }

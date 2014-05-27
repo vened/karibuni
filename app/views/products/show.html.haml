@@ -10,10 +10,23 @@
           %h3 Описание:
           .b-product_desc{:itemprop => "description"}= @product.desc
           
-          %h3 Стоимисть:
-          .b-product_price{:itemprop => "price"}
-            = @product.price.to_i 
-            руб.
+          -if @product.sale
+            %h3.sale-title 
+              Скидка:
+              =@product.sale.to_i 
+              \%
+          %h3 Стоимость:
+          -unless @product.sale
+            .b-product_price{:itemprop => "price"}
+              = @product.price.to_i 
+              руб.
+          -if @product.sale
+            .b-product_price.old{:itemprop => "price"}
+              = @product.price.to_i 
+              руб.
+            .b-product_price{:itemprop => "price"}
+              = @product.price_sale.to_i 
+              руб.
           %meta{:itemprop=>"priceCurrency", :content=>"RUB"}
 
           .b-product_buy
