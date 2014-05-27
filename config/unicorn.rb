@@ -1,4 +1,4 @@
-deploy_to  = "/home/max/www/dev.gymh.ru"
+deploy_to  = "/home/max/www/karibuni"
 rails_root = "#{deploy_to}"
 pid_file   = "#{deploy_to}/tmp/pids/unicorn.pid"
 socket_file= "#{deploy_to}/tmp/unicorn.sock"
