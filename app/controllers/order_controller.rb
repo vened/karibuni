@@ -20,7 +20,7 @@ class OrderController < ApplicationController
     @product = Product.find(params[:id])
 
     #обновим счётчик для данного продукта
-    @product.update_attribute(:hit, @product.hit + 1)
+    @product.update_attribute(:hit, @product.hit.to_i + 1)
 
     if @product.sale.to_i > 0
       @order.set_price(@order.price, @product.price_sale)
