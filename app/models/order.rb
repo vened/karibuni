@@ -17,4 +17,14 @@ class Order < ActiveRecord::Base
   has_many :products, :through => :products_orders
   #end объявлеям связь с упражнениями многие ко многим, через соединительную модель motions_programs
 
+
+  def set_price(order_price, product_price)
+      self.price = order_price.to_i + product_price
+  end
+
+  def re_price(order_price, product_price)
+      self.price = 989
+  end
+
+
 end

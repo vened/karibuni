@@ -9,25 +9,25 @@
       = f.text_field :username
       - if @order.errors.any?
         .error= @order.errors.messages[:username].join
-      
+
     .field
       = f.label :email, "Ваш e-mail:", :class => "label"
       = f.text_field :email
       - if @order.errors.any?
         .error= @order.errors.messages[:email].join
-      
+
     .field
       = f.label :address, "Ваш адрес:", :class => "label"
       = f.text_field :address
       - if @order.errors.any?
         .error= @order.errors.messages[:address].join
-      
+
     .field
       = f.label :surname, "Ваша фамилия:", :class => "label"
       = f.text_field :surname
       - if @order.errors.any?
         .error= @order.errors.messages[:surname].join
-      
+
     .field
       = f.label :phone, "Ваш телефон:", :class => "label"
       = f.text_field :phone

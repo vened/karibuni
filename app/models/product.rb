@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   before_update :product_sale
 
   def product_sale
-    if self.sale > 0
+    if self.sale.to_i > 0
       self.price_sale = self.price/100 * (100 - self.sale)
     end
   end

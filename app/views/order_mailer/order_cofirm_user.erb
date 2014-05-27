@@ -15,7 +15,12 @@
       <p>
         <%= product.title %>
         =
-        <%= product.price %>
+        <%-unless product.sale%>
+            <%= product.price %>
+        <%-end%>
+        <%-if product.sale%>
+            <%= product.price_sale %>
+        <%-end%>        
         руб.
       </p>
   <%- end %>

@@ -22,11 +22,10 @@ class OrderController < ApplicationController
     #обновим счётчик для данного продукта
     @product.update_attribute(:hit, @product.hit + 1)
 
-    unless @product.sale
-      @order.update_attribute(:price, @order.price.to_i + @product.price.to_i)
-    end
-    if @product.sale
-      @order.update_attribute(:price, @order.price.to_i + @product.price_sale.to_i)
+    if @product.sale.to_i > 0
+      @order.set_price(@order.price, @product.price_sale)
+    else
+      @order.set_price(@order.price, @product.price)
     end
 
     @order.update_attribute(:confirm, "В процессе")
@@ -66,13 +65,22 @@ class OrderController < ApplicationController
 
     #общая стоимость заказа
     @products_order = ProductsOrder.where("product_id = ? AND order_id = ?", params[:product_id], params[:id]).first
-    unless @product.sale
+
+    if @product.sale.to_i > 0
+      # @order.re_price(@order.price, @product.price_sale.to_i * @products_order.sum)
+      @count = @order.price.to_i - @product.price_sale.to_i * @products_order.sum
+    else
+      # @order.re_price(@order.price, @product.price.to_i * @products_order.sum)
       @count = @order.price.to_i - @product.price.to_i * @products_order.sum
     end
-    if @product.sale
-      @count = @order.price.to_i - @product.price_sale.to_i * @products_order.sum
-    end
-
+    
+    # unless @product.sale
+    #   @count = @order.price.to_i - @product.price.to_i * @products_order.sum
+    # end
+    # if @product.sale
+    #   @count = @order.price.to_i - @product.price_sale.to_i * @products_order.sum
+    # end
+    # 
     @order.update_attribute(:price, @count)
 
     @order.products.delete(@product)
