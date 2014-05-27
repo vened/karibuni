@@ -8,6 +8,14 @@
       -else
         = link_to("/shop/#{product.category.parent_path}/product/#{product.id}") do
           %img{:src => '/images/nophoto_small.png'}
+      
+      -if product.sale
+        .product-sale
+          .product-sale-bg
+          .product-sale-desc
+            Скидка
+            =product.sale.to_i
+            \%
   
     .clearfix
       .pull-left

@@ -71,6 +71,7 @@ Karibuni::Application.routes.draw do
 
 
   get '/shop/' => 'categories#index', :as => :shop
+  get '/shop/sales' => 'categories#sales', :as => :shop_sales
   get '/shop/:cat_id/product' => 'categories#category', :as => :category
   get '/shop/*section/:cat_id/product' => 'categories#category', :as => :category
   

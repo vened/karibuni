@@ -141,6 +141,7 @@
 	margin-left: -@margin-sales-product;
 
 	.product_cart{
+		vertical-align: top;
 		width: 300px;
 		margin: 0 0 0 @margin-sales-product;
 
@@ -173,6 +174,34 @@
 				font-size: 19px;
 				line-height: 25px;
 				font-weight: 300;
+			}
+		}
+
+		&.sale{
+			a{
+				display: block;
+				text-decoration: none;
+			}
+			.product_cart-img{
+				border: 1px dotted #be0101;
+			}
+			.product_cart-desc{
+				width: 280px;
+				height: 65px;
+				position: relative;
+				margin: -79px 0 10px 0;
+				padding: 14px 0 0 20px;
+				background: url("sales.png") repeat-x right top;
+			}
+			.product_cart-title{
+				width: 258px;
+				padding: 5px 0 0 0;
+				font-size: 36px;
+				line-height: 36px;
+				color: #fff;
+			}
+			.btn_red-add{
+				float: right;
 			}
 		}
 	}

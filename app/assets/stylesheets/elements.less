@@ -27,6 +27,21 @@
 	}
 }
 
+.btn_red-add{
+	.btn-mixin-2(#ef0909; #bf0101; 36px; 20px; 15px; #fff; none; #ed0909;);
+
+	&:hover{
+		.btn-mixin-2(#c40909; #a60101; 36px; 20px; 15px; #fff; none; #ed0909);
+	}
+	&:active{
+		.btn-mixin-2(#bf0101; #ef0909; 36px; 20px; 15px; #fff; none; #ed0909);
+	}
+	cursor: pointer;
+	.btn-in{
+		line-height: 32px !important;
+	}
+}
+
 .btn-blue{
 	.btn-mixin(#fff; #fff; 50px; 30px; 19px; #126acd; 1px dotted #126acd);
 

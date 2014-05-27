@@ -1,0 +1,9 @@
+.container.blue
+  .wrap_offset
+    .product-offset
+      
+      %h1= @meta_title
+
+      .products
+        -@products.each do |product|
+          = render :partial => 'shared/product', :object => product

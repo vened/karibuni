@@ -2,8 +2,6 @@
   .wrap_offset
     .products_sales
 
-      -#= debug @products_sale
-      
       - @products_hit.each do |product|
         .product_cart.hit
           = form_tag(:controller => "order", :action => "order_add_product", :id => product.id) do
@@ -24,8 +22,29 @@
                 Цена: 
                 = product.price.to_i 
                 руб.
-                
+
             %button.btn.btn_green-add
               %span.btn-in
                 %i.icons.icons_cart-white
                 Заказать
+
+
+      -#= debug @products_sale
+      - @products_sale.each do |product|
+        .product_cart.sale
+          = link_to shop_sales_path do
+            .product_cart-img
+              -if product.attachments.find_last
+                = image_tag product.attachments.find_last.file_url(:promo)
+              -else
+                %img{:src => '/images/nophoto_small.png'}
+    
+            .product_cart-desc
+              %h3.product_cart-title
+                Скидки до
+                =product.sale.to_i 
+                \%
+  
+          = link_to shop_sales_path, :class => "btn btn_red-add" do
+            %span.btn-in
+              Все скидки                                
