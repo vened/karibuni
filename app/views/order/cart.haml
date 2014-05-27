@@ -17,12 +17,12 @@
                 = image_tag product.attachments.find_last.file_url(:thumb)
               -else
                 %img{:src => '/images/nophoto_small.png'}
-              
+
             .product_cart-desc
               %h2= link_to product.title, "/shop/#{product.category.parent_path}/product/#{product.id}"
               %h3 Описание:
               %div= product.desc
-              
+
             .product_cart-action
               .product_cart-count
                 Количество:
@@ -32,10 +32,15 @@
                 -#%span.btn.btn-blue.count.js-count-up{:data => {:product => product.id}}
                   %span.btn-in +
 
-              .product_cart-price 
-                Стоимисть:
-                = product.price.to_i * @count
-                руб.
+              .product_cart-price
+                -unless product.sale 
+                  Стоимость:
+                  = product.price.to_i * @count
+                  руб.
+                -if product.sale
+                  Стоимость:
+                  = product.price_sale.to_i * @count
+                  руб.
               = link_to(products_order_destroy_path(@order, product), :method => :delete, :class => "btn btn-red") do
                 %span.btn-in Убрать
         
@@ -43,7 +48,7 @@
           Итоговая стоимисть:
           = @price.to_i
           руб.
-                  
+
       -else
         %h2 Ваша корзина пуста
 

@@ -18,11 +18,17 @@ class OrderController < ApplicationController
 
     #общая стоимость заказа
     @product = Product.find(params[:id])
-    
+
     #обновим счётчик для данного продукта
-    @product.update_attribute(:hit, @product.hit + 1) 
-    
-    @order.update_attribute(:price, @order.price.to_i + @product.price.to_i)
+    @product.update_attribute(:hit, @product.hit + 1)
+
+    unless @product.sale
+      @order.update_attribute(:price, @order.price.to_i + @product.price.to_i)
+    end
+    if @product.sale
+      @order.update_attribute(:price, @order.price.to_i + @product.price_sale.to_i)
+    end
+
     @order.update_attribute(:confirm, "В процессе")
 
     if @products_order
@@ -47,10 +53,10 @@ class OrderController < ApplicationController
     end
 
   end
-  
-  
+
+
   def order_product_count
-    
+
   end
 
 
@@ -60,7 +66,13 @@ class OrderController < ApplicationController
 
     #общая стоимость заказа
     @products_order = ProductsOrder.where("product_id = ? AND order_id = ?", params[:product_id], params[:id]).first
-    @count = @order.price.to_i - @product.price.to_i * @products_order.sum
+    unless @product.sale
+      @count = @order.price.to_i - @product.price.to_i * @products_order.sum
+    end
+    if @product.sale
+      @count = @order.price.to_i - @product.price_sale.to_i * @products_order.sum
+    end
+
     @order.update_attribute(:price, @count)
 
     @order.products.delete(@product)
