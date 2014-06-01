@@ -9,13 +9,18 @@
   <table style="width: 100%">
     <tr>
       <td style="padding: 0 40px 0 0">
-        <h1>Здравствуйте!</h1>
+        <h1>Здравствуй, <%= @user.name %>!</h1>
 
-        <p>У нас новогодняя распродажа</p>
+        <p>У нас летняя распродажа, скидки до 30%</p>
 
       </td>
       <td>
-        <p>Дизайнерская обувь из Италии по низким ценам!</p>
+        <p>Красивая одежда по низким ценам!
+          <a href="karibuni.ru/" target="_blank">karibuni.ru/</a>
+        </p>
+        <p>
+          <a href="karibuni.ru/user_unsubscribe/<%= @user.id %>" target="_blank">Отписаться от рассылки</a>
+        </p>
       </td>
     </tr>
   </table>

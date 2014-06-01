@@ -5,16 +5,13 @@ class UserMailer < ActionMailer::Base
 
   default :from => "sales@karibuni.ru"
 
-  def user(user, product_1, product_2, product_3, product_4)
+  def user(user, product_1)
     @user = user
     @product_1 = product_1
-    @product_2 = product_2
-    @product_3 = product_3
-    @product_4 = product_4
     #mail(:to => 'maxstbn@yandex.ru', :subject => "Новогодняя распродажа, специально для Вас!")
     #mail(:to => 'maxstbn@yandex.ru', :subject => "Новогодняя распродажа, специально для Вас!")
-    mail(:to => 'maxst3@mail.ru', :subject => "Новогодняя распродажа, специально для Вас!")
-    #mail(:to => @user.email, :subject => "Новогодняя распродажа, #{@user.name}, специально для Вас!")
+    #mail(:to => 'maxst3@mail.ru', :subject => "Новогодняя распродажа, специально для Вас!")
+    mail(:to => @user.email, :subject => "Летняя распродажа одежды, #{@user.name}, специально для Вас!")
   end
 
 end
