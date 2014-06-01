@@ -4,7 +4,7 @@ Karibuni::Application.routes.draw do
 
   #рассылка
   get '/user_start' => 'user#start'
-  #get '/user_unsubscribe/:id' => 'user#unsubscribe', :as => :unsubscribe
+  get '/user_unsubscribe/:id' => 'user#unsubscribe', :as => :unsubscribe
   #рассылка
 
 
