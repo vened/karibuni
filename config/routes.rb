@@ -3,7 +3,7 @@ Karibuni::Application.routes.draw do
   root :to => 'pages#index'
 
   #рассылка
-  #get '/user_s' => 'user#start'
+  get '/user_start' => 'user#start'
   #get '/user_unsubscribe/:id' => 'user#unsubscribe', :as => :unsubscribe
   #рассылка
 
