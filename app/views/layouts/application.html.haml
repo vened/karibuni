@@ -6,6 +6,7 @@
     %meta{:name => "keywords",  :content => metakey }
     %meta{:name => "description",  :content => metadesc }
     = csrf_meta_tags
+    = render 'shared/google'
     %link{:href => 'http://fonts.googleapis.com/css?family=Exo+2:300,500,400&subset=latin,cyrillic', :rel => 'stylesheet', :type => 'text/css'}
     = stylesheet_link_tag    "app", :media => "all"
     = javascript_include_tag "application"
