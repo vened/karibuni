@@ -9,9 +9,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     @product_1 = product_1
     #mail(:to => 'maxstbn@yandex.ru', :subject => "Новогодняя распродажа, специально для Вас!")
-    #mail(:to => 'maxstbn@yandex.ru', :subject => "Новогодняя распродажа, специально для Вас!")
-    #mail(:to => 'maxst3@mail.ru', :subject => "Новогодняя распродажа, специально для Вас!")
-    mail(:to => @user.email, :subject => "Летняя распродажа одежды, #{@user.name}, специально для Вас!")
+    # mail(:to => 'maxstbn@yandex.ru', :subject => "Новогодняя распродажа, специально для Вас!")
+    mail(:to => 'maxst3@mail.ru', :subject => "Добро пожаловать, Максим!")
+    # mail(:to => @user.email, :subject => "Летняя распродажа одежды, #{@user.name}, специально для Вас!")
   end
 
 end
