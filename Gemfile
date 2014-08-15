@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '~> 2.2.1'
-gem 'unicorn'
+#gem 'unicorn'
 #gem 'tilt'
 #gem 'debugger'
 
@@ -30,4 +30,8 @@ group :development do
   gem 'quiet_assets'
   gem 'capistrano'
   gem 'rvm-capistrano'
+end
+
+group :production do
+  gem 'unicorn'
 end

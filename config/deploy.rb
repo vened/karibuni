@@ -1,47 +1,55 @@
-require 'rvm/capistrano' # Для работы rvm
-require 'bundler/capistrano' # Для работы bundler. При изменении гемов bundler автоматически обновит все гемы на сервере, чтобы они в точности соответствовали гемам разработчика. 
+# настройка по руководству - http://istickz.ru/deploy-rails-app/
+require "rvm/capistrano"
+require "bundler/capistrano"
 
-load 'deploy/assets'
-
-set :application, "volare.su"
-set :rails_env, "production"
-                         #set :rails_env, "development"
-set :domain, "max@gymh.ru" # Это необходимо для деплоя через ssh. Именно ради этого я настоятельно советовал сразу же залить на сервер свой ключ, чтобы не вводить паролей.
-set :deploy_to, "/home/max/www/#{application}"
+set :application, "karibuni"
+set :shared_children, shared_children
+set :repository, "git@github.com:vened/karibuni.git"
+set :deploy_to, "/home/max/www/karibuni"
+set :scm, :git
+set :branch, "master"
+set :user, "max"
+set :group, "staff"
 set :use_sudo, false
-set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
-set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
+set :rails_env, "production"
+set :deploy_via, :copy
+set :ssh_options, {:forward_agent => true, :port => 22}
+set :keep_releases, 5
+default_run_options[:pty] = true
+server "185.22.60.226", :app, :web, :db, :primary => true
 
-set :rvm_ruby_string, '2.0.0' # Это указание на то, какой Ruby интерпретатор мы будем использовать.
+after "deploy", "deploy:cleanup"
 
-set :scm, :git # Используем git. Можно, конечно, использовать что-нибудь другое - svn, например, но общая рекомендация для всех кто не использует git - используйте git. 
-set :repository, "git@bitbucket.org:vened/volare.git" # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить их в deployment keys в настройках репозитария.
-set :branch, "master" # Ветка из которой будем тянуть код для деплоя.
-set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
-
-role :web, domain
-role :app, domain
-role :db, domain, :primary => true
-
-before 'deploy:setup', 'rvm:install_rvm', 'rvm:install_ruby' # интеграция rvm с capistrano настолько хороша, что при выполнении cap deploy:setup установит себя и указанный в rvm_ruby_string руби.
-
-after 'deploy:update_code', :roles => :app do
-  # Здесь для примера вставлен только один конфиг с приватными данными - database.yml. Обычно для таких вещей создают папку /srv/myapp/shared/config и кладут файлы туда. При каждом деплое создаются ссылки на них в нужные места приложения.
-  #run "rm -f #{current_release}/config/database.yml"
-  #run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
-end
-
-
-# Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
-# В случае с Rails 3 приложениями стоит заменять bundle exec unicorn_rails на bundle exec unicorn
 namespace :deploy do
-  task :restart do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command, roles: :app, except: {no_release: true} do
+      run "/etc/init.d/unicorn_#{application} #{command}"
+    end
   end
-  task :start do
-    run "bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+
+  task :setup_config, roles: :app do
+    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+    run "mkdir -p #{shared_path}/config"
+    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
+    puts "Теперь вы можете отредактировать файлы в  #{shared_path}."
   end
-  task :stop do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
+  after "deploy:setup", "deploy:setup_config"
+
+  task :symlink_config, roles: :app do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
+  after "deploy:finalize_update", "deploy:symlink_config"
+
+  desc "Make sure local git is in sync with remote."
+  task :check_revision, roles: :web do
+    unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      puts "WARNING: HEAD is not the same as origin/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
+  end
+  before "deploy", "deploy:check_revision"
+
 end

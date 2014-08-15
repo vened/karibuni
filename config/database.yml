@@ -10,8 +10,8 @@ development:
   reconnect: false
   database: karibuni_development
   pool: 5
-  username: volare
-  password: qwerty
+  username: root
+  password: 
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
 
@@ -19,10 +19,10 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: karibuni_development
+  database: karibuni_production
   pool: 5
-  username: volare
-  password: qwerty
+  username: root
+  password: 
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
 
@@ -32,7 +32,7 @@ test:
   reconnect: false
   database: production_test
   pool: 5
-  username: volare
-  password: qwerty
+  username: root
+  password: 
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
